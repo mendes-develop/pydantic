@@ -12,13 +12,13 @@ class FileCreate(BaseModel):
   
   def read_all_json(self):
     dir_path = self.get_base_path()
-    print(dir_path)
     files = os.listdir(dir_path)
     print(files)
     
-    # for file in files:
-    #   with open(dir_path + file, "r") as f:
-    #     print(f.read())
+    for file in files:
+      fullpath = dir_path + file
+      with open(fullpath, "r") as f:
+        print(f.read())
   
   def create_json(self, name:str, new_book: BaseModel):
     fullpath = self.get_full_path(name)

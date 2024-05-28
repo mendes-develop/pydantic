@@ -13,6 +13,7 @@ class App(BaseModel):
             break
 
   def questions(self):
+    print("\n")
     print("1. Add a new user")
     print("2. Add a new book")
     print("3. List all books")
@@ -23,6 +24,7 @@ class App(BaseModel):
   def parse_input(self):
     number = input("What do you want to do? ")
     num_to_int = int(number)
+    print("\n")
     if num_to_int == 1:
         return  self.add_user()
     elif num_to_int == 2:
