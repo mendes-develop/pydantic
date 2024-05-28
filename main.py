@@ -1,12 +1,8 @@
-from datetime import datetime
-from typing import Tuple
-from models.user_registry import UserRegistry
-from models.book_registry import BookRegistry
 from models.book_store import BookStore
-
 from pydantic import BaseModel
-      
+
 class App(BaseModel):
+
   new_store: BookStore = BookStore()
   
   def run(self):
@@ -22,6 +18,7 @@ class App(BaseModel):
     print("3. List all books")
     print("4. List all users")
     print("5. Exit")
+    print("\n")
     
   def parse_input(self):
     number = input("What do you want to do? ")
@@ -39,10 +36,10 @@ class App(BaseModel):
     print("\n")
     
   def list_users(self):
-    print(self.new_store.userRegistry.users)
+    self.new_store.userRegistry.read_all_users()
     
   def list_books(self):
-    print(self.new_store.bookRegistry.books)
+    self.new_store.bookRegistry.read_all_books()
     
   def add_book(self):
     title = input("What is the book's title? ")

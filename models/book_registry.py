@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from typing import Optional
+from models.file_create import FileCreate
 import os
     
 class Book(BaseModel):
@@ -10,21 +11,12 @@ class Book(BaseModel):
   owner: Optional[int] = None
 
 class BookRegistry(BaseModel):
-  counter: int = 0
-  books: dict[int, Book] = {}
-  
-  def get_book_path(self, filename: str):
-    current = os.getcwd()
-    return current + "/books/" + filename + ".json"
-    
+  file_create: FileCreate = FileCreate(model="book")
   
   def add_book(self, title: str, author: str, owner: int):
-    newBook = Book(title=title, author=author, owner=owner)
-    self.books[self.counter] = newBook
-    self.counter += 1
+    newBook = Book(title=title, author=author, owner=owner)    
+    self.file_create.create_json(title, newBook)
     
-    fullpath = self.get_book_path(title)
+  def read_all_books(self):
+    return self.file_create.read_all_json()
     
-    os.makedirs(os.path.dirname(fullpath), exist_ok=True)    
-    with open(fullpath, "w") as f:
-      f.write(newBook.model_dump_json())
