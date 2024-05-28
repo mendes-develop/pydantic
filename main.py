@@ -7,12 +7,12 @@ class App(BaseModel):
   
   def run(self):
     while(True):
-          self.questions()
+          self.print_options()
           exit = self.parse_input()
           if exit == "exit":
             break
 
-  def questions(self):
+  def print_options(self):
     print("\n")
     print("1. Add a new user")
     print("2. Add a new book")
@@ -22,7 +22,7 @@ class App(BaseModel):
     print("\n")
     
   def parse_input(self):
-    number = input("What do you want to do? ")
+    number = input("What do you want to do?(number): ")
     
     if not number.isdigit():
       print("Please enter a number, don't be a clown")
