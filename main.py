@@ -23,6 +23,11 @@ class App(BaseModel):
     
   def parse_input(self):
     number = input("What do you want to do? ")
+    
+    if not number.isdigit():
+      print("Please enter a number, don't be a clown")
+      return
+    
     num_to_int = int(number)
     print("\n")
     if num_to_int == 1:
