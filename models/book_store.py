@@ -5,7 +5,7 @@ from models.book_registry import BookRegistry
 
 from pydantic import BaseModel
 
-class BookStore(BaseModel):
+class BookStore:
     bookRegistry: BookRegistry = BookRegistry()
     userRegistry: UserRegistry = UserRegistry()
     
@@ -13,3 +13,9 @@ class BookStore(BaseModel):
       # guarantee that it doesn't repeat
       self.userRegistry.add_user(name, bio)
       print(f"add_user({name}, {bio})")
+      
+    def borrowBook(self, title: str, borrower: str) -> None:
+      # check if the book exists
+      # check if users exists
+      self.bookRegistry.borrow_book(title, borrower)
+      print(f"borrow_book({title}, {borrower})")

@@ -1,7 +1,10 @@
 import os
 from pydantic import BaseModel
-class FileCreate(BaseModel):
+class FileCreate:
   model: str
+  
+  def __init__(self, model: str) -> None:
+    self.model = model
   
   def get_base_path(self):
     current = os.getcwd()

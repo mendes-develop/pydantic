@@ -1,16 +1,19 @@
 from models.book_store import BookStore
 from pydantic import BaseModel
 
-class App(BaseModel):
-
-  new_store: BookStore = BookStore()
+class App:
+  new_store: BookStore
+  
+  def __init__(self) -> None:
+    self.new_store = BookStore()
+     
   
   def run(self):
     while(True):
-          self.print_options()
-          exit = self.parse_input()
-          if exit == "exit":
-            break
+      self.print_options()
+      exit = self.parse_input()
+      if exit == "exit":
+        break
 
   def print_options(self):
     print("\n")
@@ -39,6 +42,8 @@ class App(BaseModel):
     elif num_to_int == 4:
         return self.list_users()
     elif num_to_int == 5:
+        return self.borrow_book()
+    elif num_to_int == 6:
         return "exit"
     print("\n")
     
@@ -57,6 +62,11 @@ class App(BaseModel):
     name = input("What is the user's name? ")
     bio = input("What is the user's bio? ")
     self.new_store.addUser(name, bio)
+    
+  def borrow_book(self):
+    title = input("What is the book's title? ")
+    borrower = input("Who is the book's borrower? ")
+    self.new_store.borrow_book(title, borrower)
       
 if __name__ == "__main__":
   app_instance = App()

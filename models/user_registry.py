@@ -6,7 +6,7 @@ from models.file_create import FileCreate
 class User(BaseModel):
   name: str
   bio: str
-class UserRegistry(BaseModel) :
+class UserRegistry :
   file_create: FileCreate = FileCreate(model="user")
 
   def add_user(self, username: str, bio: str):
