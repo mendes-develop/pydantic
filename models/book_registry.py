@@ -21,10 +21,19 @@ class BookRegistry:
     return self.file_create.read_all_json()
   
   def borrow_book(self, title: str, borrower: str):
-    for book in self.read_all_books():
-      if book.title == title:
-        book.borrowed_by = borrower
-        self.file_create.update_json(title, book)
-        return
-    print("Book not found")
+    # read file from folder
+    file = self.file_create.get_one_json(title)
+    if not file:
+      print("Not Found")
+      return
+    
+    found_book = Book(**file)
+    found_book.borrowed_by = borrower
+    print(found_book)
+    self.file_create.create_json(title, found_book)
+    
+    # for book in self.read_all_books():
+    #   if book.title == title:
+    #     return
+    # print("Book not found")
     

@@ -21,7 +21,8 @@ class App:
     print("2. Add a new book")
     print("3. List all books")
     print("4. List all users")
-    print("5. Exit")
+    print("5. List borrow a book")
+    print("6. Exit")
     print("\n")
     
   def parse_input(self):

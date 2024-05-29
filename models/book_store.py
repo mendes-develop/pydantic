@@ -14,7 +14,7 @@ class BookStore:
       self.userRegistry.add_user(name, bio)
       print(f"add_user({name}, {bio})")
       
-    def borrowBook(self, title: str, borrower: str) -> None:
+    def borrow_book(self, title: str, borrower: str) -> None:
       # check if the book exists
       # check if users exists
       self.bookRegistry.borrow_book(title, borrower)
