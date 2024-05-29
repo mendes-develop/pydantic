@@ -12,5 +12,3 @@ source app-env
 ```
 
 3.  Run `python main.py`
-
-![Gif](final.gif)
